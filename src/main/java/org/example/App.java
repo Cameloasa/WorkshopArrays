@@ -14,7 +14,7 @@ public class App {
         String[] initialNames = {"Simon Sten", "Anna Karenina", "John Doe"};
         NameRepository.setNames(initialNames);
         for(String name :initialNames){
-        System.out.println("First initial names of array :" + name);
+        System.out.println("Initial names of array :" + name);
         }
 
 
@@ -33,26 +33,34 @@ public class App {
             System.out.println("First name + Last name :" + name);
         }
 
+        String fullNameToFind = "Alice Wonderland";
+        String foundName = NameRepository.find(fullNameToFind);
+        if (foundName !=null){
+            System.out.println("Name found :" + foundName);
+        }else{
+            System.out.println("Name not found");
+        }
 
-
-        System.out.println("\nFinding name: Mehrdad Javan");
-
-        String foundName = NameRepository.find("Mehrdad Javan");
-        System.out.println("Find result: " + foundName);
-
-        System.out.println("Adding new name: Erik Brink");
-        boolean addResult = NameRepository.add("Erik Brink");
-        System.out.println("Add result: " + addResult);
-        allNames = NameRepository.findAll();
-        System.out.println("Current names:");
-        for (String name : allNames) {
-            System.out.println(name);
+        String newName = "Alice Wonderland";
+        boolean added = NameRepository.add(newName);
+        if (added){
+            System.out.println("Named added ." + newName);
+        }else {
+            System.out.println("Name already exist!");
         }
 
 
-        System.out.println("First name : " + Arrays.toString(NameRepository.findByFirstName("Erik")));
+        String[] newArray = NameRepository.findByFirstName("Marry");
+        if(newArray.length> 0){
+            System.out.println("Names found");
+            for(String name : newArray) {
+                System.out.println(name);
+            }
+        }else{
+            System.out.println("No found");
+        }
 
-        System.out.println("Last name : " + Arrays.toString(NameRepository.findByLastName("Erik")));
+
 
 
 

@@ -16,52 +16,57 @@ public class NameRepository {
         return names.length;
     }
 
-    //
+    //Receiving an Arrays of names as parameters and replacing the initial name
     public static void setNames(String[] newNames) {
         names = newNames;
 
     }
+
     //Resetting the array to en empty array
     public static void clear() {
         names = new String[0];
 
     }
+
     //Return all names into Array
     public static String[] findAll() {
-        return Arrays.copyOf(names,names.length);
+        return Arrays.copyOf(names, names.length);
 
     }
 
 
     //Part 2
-
+    //Return name is found or return null is not found
     public static String find(final String fullName) {
-        for (String element : names) {
-            if (fullName.equalsIgnoreCase(element)) {
-                return element;
+        for (String name : names) {
+            if (fullName.equalsIgnoreCase(name)) {
+                return name; // Name found
             }
         }
-        return null;
+        return null; // Name not found
     }
 
+
+    //Return a name into array if is added
     public static boolean add(final String fullName) {
-        //  implement  the add logic
-
-        if (find(fullName) != null) {
-            return false; // Name already exists, return false
+        //Check if the name already exists
+        for (String name: names) {
+            if (fullName.equalsIgnoreCase(name)) {
+                return false; // Name already exists, return false
+            }
         }
-        names = Arrays.copyOf(names, names.length + 1);
+        //Extend the Array by one and add the new name
+        names = Arrays.copyOf(names,names.length + 1);
         names[names.length - 1] = fullName;
-
-
         return true;
+
+
     }
-
-
+    // Find a
     public static String [] findByFirstName(final String firstName) {
-        String [] newArray = new String[0]; // 0
+        String [] newArray = new String[names.length]; // 0
 
-        for (String fullName : names) { // fullName = "Erik Sten"
+        for (String fullName : names) { // fullName = Marry Poppins
             String extractedFirstName = fullName.split(" ")[0];
             if (firstName.equalsIgnoreCase(extractedFirstName)) {
                 newArray = Arrays.copyOf(newArray, newArray.length + 1 );
