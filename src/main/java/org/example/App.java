@@ -1,24 +1,39 @@
 package org.example;
-
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
         //Repository.getSize(); done
         //Repository.add(); done
         //Repository.setNames(); done
-        String[] initialNames = {"Simon Sten", "Anna Karenina","John Doe"};
 
+
+        System.out.println("Numbers of elements in the array :" + NameRepository.getSize());
+
+
+        String[] initialNames = {"Simon Sten", "Anna Karenina", "John Doe"};
         NameRepository.setNames(initialNames);
-        System.out.println("Numbers of names :" + NameRepository.getSize());
-
-        String[] allNames = NameRepository.findAll();
-        for (String name : allNames) {
-            System.out.println("Initial names:" +name);
+        for(String name :initialNames){
+        System.out.println("First initial names of array :" + name);
         }
+
 
         System.out.println("\nClearing the repository...");
         NameRepository.clear();
         System.out.println("Number of names after clearing: " + NameRepository.getSize());
+
+
+        String[] newNames = {"Marry Poppins", "Pippi Longstrump" , "Kalle Anka"};
+        NameRepository.setNames(newNames);
+        System.out.println("Names array replaced successfully");
+
+
+        String[] allNames = NameRepository.findAll();
+        for (String name : allNames) {
+            System.out.println("First name + Last name :" + name);
+        }
+
+
 
         System.out.println("\nFinding name: Mehrdad Javan");
 
@@ -33,6 +48,11 @@ public class App {
         for (String name : allNames) {
             System.out.println(name);
         }
+
+
+        System.out.println("First name : " + Arrays.toString(NameRepository.findByFirstName("Erik")));
+
+        System.out.println("Last name : " + Arrays.toString(NameRepository.findByLastName("Erik")));
 
 
 
