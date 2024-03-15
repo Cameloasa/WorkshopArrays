@@ -78,14 +78,14 @@ public class NameRepository {
     }
 
     public static String [] findByLastName(final String lastName) {
-        String [] newArray = new String[0]; // 0
+        String [] newArray1 = new String[names.length]; // 0
 
         for (String fullName : names) { // fullName = "Erik Sten"
-            String extractedLastName = fullName.split( " ")[0];
+            String extractedLastName = fullName.split( " ")[1];
             if (lastName.equalsIgnoreCase(extractedLastName)) {
-                newArray = Arrays.copyOf(newArray, newArray.length + 1 );
-                newArray[newArray.length -1 ] = fullName;
-                return newArray;
+                newArray1 = Arrays.copyOf(newArray1, newArray1.length + 1 );
+                newArray1[newArray1.length -1 ] = fullName;
+                return newArray1;
             }
         }
         return null;
@@ -107,9 +107,17 @@ public class NameRepository {
 
 
     public static boolean remove(final String fullName){
+        for(int i = 0; i < names.length; i++){
+            if(names[i].equalsIgnoreCase(fullName)){
+              for(int j = i; j < names.length - 1 ; j++){
+                  names[j] = names [ j+1];
+              }
+              names[names.length -1] = null;
+              return true;
+            }
+        }
 
-
-        return true;
+        return false;
     }
 
 }

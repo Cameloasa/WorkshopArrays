@@ -3,9 +3,6 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        //Repository.getSize(); done
-        //Repository.add(); done
-        //Repository.setNames(); done
 
 
         System.out.println("Numbers of elements in the array :" + NameRepository.getSize());
@@ -51,6 +48,7 @@ public class App {
 
 
         String[] newArray = NameRepository.findByFirstName("Marry");
+        assert newArray != null;
         if(newArray.length> 0){
             System.out.println("Names found");
             for(String name : newArray) {
@@ -60,9 +58,36 @@ public class App {
             System.out.println("No found");
         }
 
+        String[] newArray1 = NameRepository.findByLastName("Poppins");
+        assert newArray1 != null;
+        if(newArray1.length> 0){
+            System.out.println("Names found");
+            for(String name : newArray1) {
+                System.out.println(name);
+            }
+        }else{
+            System.out.println("No found");
+        }
+
+        boolean update = NameRepository.update("Erik Sten","John Doe");
+        if(update){
+            System.out.println("Name updated successfully.");
+        }else{
+            System.out.println("Name failed to update.");
+        }
 
 
-
+        boolean removed = NameRepository.remove ("John Doe");
+        if (removed){
+            System.out.println("Name removed successfully.");
+            for (String name : newNames){
+                if(name != null){
+                    System.out.println(name);
+                }
+            }
+        }else{
+            System.out.println("Name not found.");
+        }
 
     }
 }
