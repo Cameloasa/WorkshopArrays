@@ -77,8 +77,8 @@ public class App {
         }
 
 
-        boolean removed = NameRepository.remove ("John Doe");
-        if (removed){
+        boolean remove = NameRepository.remove ("John Doe");
+        if (remove){
             System.out.println("Name removed successfully.");
             for (String name : newNames){
                 if(name != null){
